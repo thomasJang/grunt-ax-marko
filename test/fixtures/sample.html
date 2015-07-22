@@ -1,0 +1,18 @@
+<layout-use template="../layouts/basic.marko" show-header="$true">
+	<layout-put into="title">My Page</layout-put>
+	<layout-put into="body">
+
+		Hello ${data.name}!
+
+		<ul if="notEmpty(data.colors)">
+			<li style="color: $color" for="color in data.colors">
+				$color
+			</li>
+		</ul>
+		<div else>
+			No colors!
+		</div>
+
+	</layout-put>
+
+</layout-use>
