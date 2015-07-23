@@ -20,7 +20,7 @@ module.exports = function (grunt) {
 
 		// Before generating any new files, remove any previously-created files.
 		clean: {
-			tests: ['tmp']
+			tests: ['expected']
 		},
 
 		// Configuration to be run (and then tested).
@@ -62,6 +62,6 @@ module.exports = function (grunt) {
 	// By default, lint and run all tests.
 	// grunt.registerTask('default', ['jshint', 'test']);
 
-	grunt.registerTask('test', ['axisj_marko']);
+	grunt.registerTask('test', ['clean', 'axisj_marko']);
 
 };

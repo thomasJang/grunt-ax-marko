@@ -9,6 +9,7 @@
 'use strict';
 
 var marko = require('marko');
+require('marko/compiler').defaultOptions.preserveWhitespace = true;
 
 module.exports = function (grunt) {
 
@@ -46,15 +47,11 @@ module.exports = function (grunt) {
 
 			src.forEach(function(filepath){
 
-				/*
-				var tmpl = grunt.file.read(filepath),
-				    output, layout_output,
-				    dest_filename;
-				*/
 				var tmpl = marko.load(filepath),
 					dest_filename = filepath.substring( Math.max(filepath.lastIndexOf('/'), filepath.lastIndexOf('\\')), filepath.length);
 
 				for(lang in lang_view){
+					lang_view[lang].template_url = '../layouts/basic.marko';
 					tmpl.render(lang_view[lang], function(err, output){
 						if(!err)
 							grunt.file.write(f.dest + '/' + lang + dest_filename, output);
