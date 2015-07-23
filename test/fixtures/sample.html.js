@@ -16,7 +16,7 @@ function create(__helpers) {
     __tag(out,
       ______node_modules_marko_node_modules_marko_layout_use_tag_js,
       {
-        "template": __loadTemplate(data.template_url, require),
+        "template": __loadTemplate(data.layout_path, require),
         "getContent": function(__layoutHelper) {
           out.w('\n\t');
           __tag(out,

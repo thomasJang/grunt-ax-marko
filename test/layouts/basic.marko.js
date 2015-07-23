@@ -7,10 +7,10 @@ function create(__helpers) {
       __tag = __helpers.t;
 
   return function render(data, out) {
-    out.w('<!DOCTYPE html> <html lang="en"><head><meta charset="UTF-8"><title></title></head><body>');
+    out.w('<!DOCTYPE html>\n<html lang="en">\n<head>\n\t<meta charset="UTF-8">\n\t<title></title>\n</head>\n<body>\n\n\t');
 
     if (data.showHeader !== false) {
-      out.w('<h1>');
+      out.w('<h1>\n        ');
       __tag(out,
         ______node_modules_marko_node_modules_marko_layout_placeholder_tag_js,
         {
@@ -18,8 +18,10 @@ function create(__helpers) {
           "content": data.layoutContent
         });
 
-      out.w('</h1>');
+      out.w('\n    </h1>');
     }
+
+    out.w('\n\n\t');
     __tag(out,
       ______node_modules_marko_node_modules_marko_layout_placeholder_tag_js,
       {
@@ -27,7 +29,7 @@ function create(__helpers) {
         "content": data.layoutContent
       });
 
-    out.w('</body></html>');
+    out.w('\n\n</body>\n</html>');
   };
 }
 (module.exports = require("marko").c(__filename)).c(create);

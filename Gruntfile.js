@@ -1,5 +1,5 @@
 /*
- * grunt-axisj-marko
+ * grunt-ax-marko
  * https://github.com/thomasJang/grunt-axisj-marko
  *
  * Copyright (c) 2015 ThomasJ
@@ -20,21 +20,27 @@ module.exports = function (grunt) {
 
 		// Before generating any new files, remove any previously-created files.
 		clean: {
-			tests: ['expected']
+			tests: ['test/expected', 'test/fixtures/*.js', 'test/layouts/*.js']
 		},
 
 		// Configuration to be run (and then tested).
-		axisj_marko: {
+		ax_marko: {
 			default: {
-				options: {},
+				options: {
+					preserveWhitespace: true // expected output whitespace
+				},
 				files: [
 					{
-						src: "test/fixtures/**/*.html",
+						src: "test/fixtures/*.html",
+						global_data: {
+							layout_path: "../layouts/basic.marko" // src relative path
+						},
 						lang: {
 							ko: "test/lang/ko.json",
 							en: "test/lang/en.json"
 						},
-						dest: "test/expected"
+						dest: "test/expected",
+						output_extension: "html"
 					}
 				]
 			}
@@ -62,6 +68,6 @@ module.exports = function (grunt) {
 	// By default, lint and run all tests.
 	// grunt.registerTask('default', ['jshint', 'test']);
 
-	grunt.registerTask('test', ['clean', 'axisj_marko']);
+	grunt.registerTask('test', ['clean', 'ax_marko']);
 
 };

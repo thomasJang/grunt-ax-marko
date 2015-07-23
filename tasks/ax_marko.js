@@ -9,16 +9,18 @@
 'use strict';
 
 var marko = require('marko');
-require('marko/compiler').defaultOptions.preserveWhitespace = true;
+
 
 module.exports = function (grunt) {
 
 	// Please see the Grunt documentation for more information regarding task
 	// creation: http://gruntjs.com/creating-tasks
 
-	grunt.registerMultiTask('axisj_marko', '', function () {
+	grunt.registerMultiTask('ax_marko', '', function () {
 		// Merge task-specific and/or target-specific options with these defaults.
 		var options = this.options({});
+
+		require('marko/compiler').defaultOptions.preserveWhitespace = options.preserveWhitespace;
 
 		// Iterate over all specified file groups.
 		this.files.forEach(function (f) {
@@ -48,20 +50,22 @@ module.exports = function (grunt) {
 			src.forEach(function(filepath){
 
 				var tmpl = marko.load(filepath),
-					dest_filename = filepath.substring( Math.max(filepath.lastIndexOf('/'), filepath.lastIndexOf('\\')), filepath.length);
+				    dest_filename = filepath.substring( Math.max(filepath.lastIndexOf('/'), filepath.lastIndexOf('\\')), filepath.length);
+				dest_filename = dest_filename.substring(0, dest_filename.lastIndexOf('.'));
 
 				for(lang in lang_view){
-					lang_view[lang].template_url = '../layouts/basic.marko';
+					for(var k in f.global_data){
+						lang_view[lang][k] = f.global_data[k];
+					}
 					tmpl.render(lang_view[lang], function(err, output){
 						if(!err)
-							grunt.file.write(f.dest + '/' + lang + dest_filename, output);
+							grunt.file.write(f.dest + '/' + lang + dest_filename + "." + f.output_extension, output);
 						else
 							grunt.log.error(err);
 					});
 				}
 
 			});
-
 
 			// grunt.file.write(f.dest, src);
 			// grunt.log.writeln('File "' + f.dest + '" created.');
