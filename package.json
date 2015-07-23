@@ -1,23 +1,23 @@
 {
-	"name": "grunt-axisj-marko",
+	"name": "grunt-ax-marko",
 	"description": "marko template render",
-	"version": "0.1.0",
-	"homepage": "https://github.com/thomasJang/grunt-axisj-marko",
+	"version": "0.1.1",
+	"homepage": "https://github.com/thomasJang/grunt-ax-marko",
 	"author": {
 		"name": "ThomasJ",
 		"email": "tom@axisj.com"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/thomasJang/grunt-axisj-marko.git"
+		"url": "https://github.com/thomasJang/grunt-ax-marko.git"
 	},
 	"bugs": {
-		"url": "https://github.com/thomasJang/grunt-axisj-marko/issues"
+		"url": "https://github.com/thomasJang/grunt-ax-marko/issues"
 	},
 	"licenses": [
 		{
 			"type": "MIT",
-			"url": "https://github.com/thomasJang/grunt-axisj-marko/blob/master/LICENSE-MIT"
+			"url": "https://github.com/thomasJang/grunt-ax-marko/blob/master/LICENSE-MIT"
 		}
 	],
 	"engines": {
