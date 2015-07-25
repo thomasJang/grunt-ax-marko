@@ -1,0 +1,22 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%
+
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+
+	<h1 if="data.showHeader !== false">
+        <layout-placeholder name="title"/>
+    </h1>
+
+	<layout-placeholder name="body"/>
+
+</body>
+</html>

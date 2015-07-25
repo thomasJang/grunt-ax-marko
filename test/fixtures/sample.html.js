@@ -68,7 +68,7 @@ function create(__helpers) {
               out.w('\n\n\t');
             });
 
-          out.w('\n\n');
+          out.w('\n');
         },
         "*": {
           "showHeader": true

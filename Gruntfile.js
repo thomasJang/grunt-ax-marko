@@ -20,7 +20,7 @@ module.exports = function (grunt) {
 
 		// Before generating any new files, remove any previously-created files.
 		clean: {
-			tests: ['test/expected', 'test/fixtures/*.js', 'test/layouts/*.js']
+			tests: ['test/expected', 'test/www', 'test/fixtures/*.js', 'test/layouts/*.js']
 		},
 
 		// Configuration to be run (and then tested).
@@ -41,6 +41,18 @@ module.exports = function (grunt) {
 						},
 						dest: "test/expected",
 						output_extension: "html"
+					},
+					{
+						src: "test/fixtures/*.html",
+						global_data: {
+							layout_path: "../layouts/axp.marko" // src relative path
+						},
+						lang: {
+							ko: "test/lang/ko.json",
+							en: "test/lang/en.json"
+						},
+						dest: "test/www",
+						output_extension: "axp"
 					}
 				]
 			}
