@@ -59,7 +59,7 @@ module.exports = function (grunt) {
 					}
 					tmpl.render(lang_view[lang], function(err, output){
 						if(!err)
-							grunt.file.write(f.dest + '/' + lang + dest_filename + "." + f.output_extension, output);
+							grunt.file.write(f.dest + '/' + lang + dest_filename + "." + f.output_extension, output.replace(/<\/%>/g, "").replace(/<\/%@>/g, ""));
 						else
 							grunt.log.error(err);
 					});
