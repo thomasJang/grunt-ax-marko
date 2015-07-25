@@ -1,7 +1,7 @@
 {
 	"name": "grunt-ax-marko",
 	"description": "marko template render",
-	"version": "0.1.5",
+	"version": "0.1.6",
 	"homepage": "https://github.com/thomasJang/grunt-ax-marko",
 	"author": {
 		"name": "ThomasJ",
