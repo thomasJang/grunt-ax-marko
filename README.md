@@ -33,7 +33,7 @@ grunt.initConfig({
 			},
 			files: [
 				{
-					// src_root: "", [You entered when you try to Tsukuridaso to "DEST" to a subfolder of the root]
+					// src_root: "", [Enter when you try and try my watch until the folder under the src_root` `to dest` subfolder`]
 					src: "test/fixtures/*.html",
 					global_data: { // append data
 						layout_path: "../layouts/basic.marko" // src relative path
@@ -42,7 +42,7 @@ grunt.initConfig({
 						ko: "test/lang/ko.json",
 						en: "test/lang/en.json"
 					},
-					// lang: "test/lang/ko.json",  [don't use lang folder]
+					// lang: "test/lang/ko.json",  [Enter when do not use lang folder]
 					dest: "test/expected",
 					output_extension: "html"
 				}
