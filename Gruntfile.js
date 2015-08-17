@@ -31,26 +31,35 @@ module.exports = function (grunt) {
 				},
 				files: [
 					{
+						src_root: "test",
 						src: "test/fixtures/*.html",
 						global_data: {
 							layout_path: "../layouts/basic.marko" // src relative path
 						},
+
 						lang: {
 							ko: "test/lang/ko.json",
 							en: "test/lang/en.json"
 						},
+						// lang: "test/lang/ko.json",
+
 						dest: "test/expected",
 						output_extension: "html"
 					},
 					{
+						// src_root: "",
 						src: "test/fixtures/*.html",
 						global_data: {
 							layout_path: "../layouts/axp.marko" // src relative path
 						},
+/*
 						lang: {
 							ko: "test/lang/ko.json",
 							en: "test/lang/en.json"
 						},
+						*/
+						lang: "test/lang/ko.json",
+
 						dest: "test/www",
 						output_extension: "axp"
 					}

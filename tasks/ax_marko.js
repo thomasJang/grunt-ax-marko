@@ -28,11 +28,22 @@ module.exports = function (grunt) {
 
 			var lang_view = {};
 			// lang 파일 검사
-			for(var lang in f.lang){
-				if (!grunt.file.exists(f.lang[lang])) {
-					grunt.log.warn('lang.'+ lang +' file "' + f.lang[lang] + '" not found.');
-				}else{
-					lang_view[lang] = grunt.file.readJSON(f.lang[lang]);
+
+			if(typeof f.lang == "string"){
+				lang_view = null;
+				if (!grunt.file.exists(f.lang)) {
+					grunt.log.warn('lang or view not found.');
+				} else {
+					lang_view = grunt.file.readJSON(f.lang);
+				}
+			}
+			else {
+				for (var lang in f.lang) {
+					if (!grunt.file.exists(f.lang[lang])) {
+						grunt.log.warn('lang.' + lang + ' file "' + f.lang[lang] + '" not found.');
+					} else {
+						lang_view[lang] = grunt.file.readJSON(f.lang[lang]);
+					}
 				}
 			}
 
@@ -49,22 +60,48 @@ module.exports = function (grunt) {
 
 			src.forEach(function(filepath){
 
-				var tmpl = marko.load(filepath),
-				    dest_filename = filepath.substring( Math.max(filepath.lastIndexOf('/'), filepath.lastIndexOf('\\')), filepath.length);
-				dest_filename = dest_filename.substring(0, dest_filename.lastIndexOf('.'));
+				var tmpl = marko.load(filepath), dest_filename;
 
-				for(lang in lang_view){
+
+
+
+				if(typeof f.src_root == "string" && grunt.file.isDir(f.src_root)){
+					//grunt.log.warn( grunt.file.isDir(f.src_root) );
+					//grunt.log.warn( filepath );
+
+					dest_filename = filepath.substr(f.src_root.length);
+					dest_filename = dest_filename.substring(0, dest_filename.lastIndexOf('.'));
+				}
+				else{
+					dest_filename = filepath.substring( Math.max(filepath.lastIndexOf('/'), filepath.lastIndexOf('\\')), filepath.length);
+					dest_filename = dest_filename.substring(0, dest_filename.lastIndexOf('.'));
+				}
+
+
+
+				if(typeof f.lang == "string"){
 					for(var k in f.global_data){
-						lang_view[lang][k] = f.global_data[k];
+						lang_view[k] = f.global_data[k];
 					}
-					tmpl.render(lang_view[lang], function(err, output){
+					tmpl.render(lang_view, function(err, output){
 						if(!err)
-							grunt.file.write(f.dest + '/' + lang + dest_filename + "." + f.output_extension, output.replace(/<\/%>/g, "").replace(/<\/%@>/g, ""));
+							grunt.file.write(f.dest + dest_filename + "." + f.output_extension, output.replace(/<\/%>/g, "").replace(/<\/%@>/g, ""));
 						else
 							grunt.log.error(err);
 					});
+				}else{
+					for(lang in lang_view){
+						for(var k in f.global_data){
+							lang_view[lang][k] = f.global_data[k];
+						}
+						tmpl.render(lang_view[lang], function(err, output){
+							if(!err)
+								grunt.file.write(f.dest + '/' + lang + dest_filename + "." + f.output_extension, output.replace(/<\/%>/g, "").replace(/<\/%@>/g, ""));
+							else
+								grunt.log.error(err);
+						});
+					}
 				}
-
 			});
 
 			// grunt.file.write(f.dest, src);
