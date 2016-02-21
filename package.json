@@ -33,12 +33,14 @@
 		"grunt": "~0.4.5"
 	},
 	"peerDependencies": {
-		"grunt": "~0.4.5"
+		"grunt": ">=0.4.0"
 	},
 	"dependencies": {
 		"marko": "^2.0.0"
 	},
 	"keywords": [
-		"gruntplugin", "marko", "grunt-marko"
+		"gruntplugin",
+		"marko",
+		"grunt-marko"
 	]
 }
